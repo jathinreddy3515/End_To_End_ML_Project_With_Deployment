@@ -1,53 +1,21 @@
-from setuptools import setup, find_packages
-import re
+from setuptools import find_packages,setup
+from typing import List
 
+HYPEN_E_DOT='-e .'
+def get_requirements(file_path:str)->List[str]:
+    '''
+    this function will return the list of requirements
+    '''
+    requirements=[]
+    with open(file_path) as file_obj:
+        requirements=file_obj.readlines()
+        requirements=[req.replace("\n","") for req in requirements]
 
-def get_requirements(file_path: str) -> list[str]:
-    """Return validated requirements from a requirements file.
-
-    - Strips BOMs and whitespace
-    - Ignores blank lines and comments
-    - Ignores editable markers like '-e .' and pip option lines
-    - Validates requirement format using `packaging` when available,
-      otherwise falls back to a conservative regex and raises on failure.
-    """
-    requirements: list[str] = []
-    try:
-        from packaging.requirements import Requirement as _PackReq
-    except Exception:
-        _PackReq = None
-
-    simple_re = re.compile(r"^[A-Za-z0-9_.+-]+(\[.*\])?(\s*(?:[<>=!~]=?).+)?$")
-
-    with open(file_path, encoding="utf-8") as f:
-        for raw in f:
-            line = raw.strip().lstrip('\ufeff')
-            if not line or line.startswith('#'):
-                continue
-            if line.startswith('-e') or line.startswith('- e'):
-                # editable installs should not be listed in requirements
-                continue
-            if line.startswith('--'):
-                # pip options
-                continue
-
-            # Validate format
-            if _PackReq is not None:
-                try:
-                    _PackReq(line)
-                except Exception as exc:
-                    raise ValueError(f"Invalid requirement '{line}': {exc}")
-            else:
-                if not simple_re.match(line):
-                    raise ValueError(
-                        "Invalid requirement '{0}': cannot validate because 'packaging' "
-                        "is not installed; also failed basic regex check.".format(line)
-                    )
-
-            requirements.append(line)
-
+        if HYPEN_E_DOT in requirements:
+            requirements.remove(HYPEN_E_DOT)
+    
     return requirements
-
+    
 
 setup(
     name='mlproject',
