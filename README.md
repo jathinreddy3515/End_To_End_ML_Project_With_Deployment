@@ -1,324 +1,191 @@
-## End to End Deployment of  Machine Learning Project
+# 🎓 Student Performance Prediction – Machine Learning Project
 
-\# 📦 ML Project — End-to-End Machine Learning Application
-
-
-
-This repository contains a complete end-to-end Machine Learning project built with \*\*Python\*\*, including:
-
-
-
-✔ Data ingestion, preprocessing, and transformation  
-
-✔ Model training and evaluation  
-
-✔ Saving preprocessors and models as pickle files  
-
-✔ A Flask web app to predict student math scores from user input
-
-
+This project predicts student performance using Machine Learning and provides a web interface for real-time predictions.
 
 ---
 
+## 🔗 Live Application
 
-
-\## 🧠 Project Overview
-
-
-
-This project takes student performance data, builds a regression model to predict math scores, and provides a \*\*web interface\*\* so users can enter features and get predictions in real time.
-
-
-
-It follows a clean workflow with reusable modules, custom exceptions, and logging.
-
-
+```text
+https://student-performance-ml-predictor-jathin-dseehpf8aef9d2dm.centralindia-01.azurewebsites.net/predictdata
+```
 
 ---
 
+## 🧠 What This Project Does
 
+```text
+- Collects student details
+- Processes data using ML pipelines
+- Predicts student performance
+- Displays results through a web application
+```
 
-\## 🗂️ Project Structure
+---
 
+## 🏗️ Project Architecture
 
-
+```text
 ml-project/
-
 │
-
-├── src/
-
-│ ├── components/
-
-│ │ ├── data\_ingestion.py
-
-│ │ ├── data\_transformation.py
-
-│ │ └── model\_trainer.py
-
-│ ├── pipeline/
-
-│ │ └── predict\_pipeline.py
-
-│ ├── utils.py
-
-│ ├── logger.py
-
-│ └── exception.py
-
-│
-
-├── templates/
-
-│ ├── index.html
-
-│ └── home.html
-
-│
-
-├── artifacts/
-
-│ ├── preprocessor.pkl
-
-│ └── model.pkl
-
-│
-
 ├── app.py
-
 ├── requirements.txt
-
-└── README.md
-
-
-
-
+├── README.md
+│
+├── src/
+│   ├── components/
+│   │   ├── data_ingestion.py
+│   │   ├── data_transformation.py
+│   │   └── model_trainer.py
+│   │
+│   ├── pipeline/
+│   │   ├── train_pipeline.py
+│   │   └── predict_pipeline.py
+│   │
+│   ├── exception.py
+│   └── logger.py
+│
+├── templates/
+│   ├── index.html
+│   └── home.html
+│
+└── artifacts/
+    ├── model.pkl
+    └── preprocessor.pkl
+```
 
 ---
 
+## 🔄 Project Workflow (Simple Explanation)
 
+```text
+Raw Data
+   ↓
+Data Ingestion
+   ↓
+Data Transformation
+   ↓
+Model Training
+   ↓
+Model Saved
+   ↓
+User Input (Web Form)
+   ↓
+Prediction Output
+```
 
-\## 🚀 Setup Instructions
+---
 
+## ⚙️ How the System Works
 
+```text
+1. Read and prepare data
+2. Transform features
+3. Train ML model
+4. Save model and preprocessor
+5. Load model in Flask app
+6. Accept user input
+7. Display prediction
+```
 
-\### 1️⃣ Clone the repository
+---
+
+## 🌐 Flask Web Routes
+
+```text
+/            → Home page
+/predictdata → Prediction page
+```
+
+---
+
+## ▶️ Run the Project Locally
 
 ```bash
-
 git clone https://github.com/jathinreddy3515/ml-project.git
-
 cd ml-project
-
-
-
-2️⃣ Create and activate a Python environment
-
-python -m venv venv
-
-venv\\Scripts\\activate      # Windows
-
-\# OR
-
-source venv/bin/activate   # macOS / Linux
-
-
-
-3️⃣ Install dependencies
-
 pip install -r requirements.txt
-
-
-
-
-
-This installs:
-
-
-
-Flask (for web app)
-
-
-
-scikit-learn (ML tools)
-
-
-
-pandas + numpy (data handling)
-
-
-
-catboost, xgboost (models)
-
-
-
-📊 How the Pipeline Works
-
-
-
-Data Ingestion
-
-
-
-Load original dataset
-
-
-
-Split into train/test
-
-
-
-Save CSVs
-
-
-
-Data Transformation
-
-
-
-Handle missing values
-
-
-
-Encode categorical features
-
-
-
-Scale numerical features
-
-
-
-Save preprocessor.pkl
-
-
-
-Model Training
-
-
-
-Train multiple regression models
-
-
-
-Evaluate using R² score
-
-
-
-Save best model as model.pkl
-
-
-
-Web App Prediction
-
-
-
-User enters inputs in HTML form
-
-
-
-Flask loads saved preprocessor + model
-
-
-
-Predicts math score in real time
-
-
-
-🏃 Running Locally
-
-🔹 Train the model
-
-python src/components/data\_ingestion.py
-
-
-
-🔹 Start the web app
-
 python app.py
+```
 
+```text
+http://127.0.0.1:10000
+http://127.0.0.1:10000/predictdata
+```
 
+---
 
+## 🚀 Production Server
 
+```bash
+gunicorn app:application
+```
 
-Open your browser:
+---
 
+## ⚙️ App Settings (Azure)
 
+```text
+SCM_DO_BUILD_DURING_DEPLOYMENT = true
+PYTHON_VERSION = 3.10
+WEBSITES_PORT = 8000
+```
 
-http://127.0.0.1:5000/
+---
 
+## ☁️ Deployment Workflow
 
+```text
+GitHub Repository
+   ↓
+GitHub Actions
+   ↓
+Azure App Service
+   ↓
+Public URL
+```
 
+---
 
+## 📦 Model Artifacts
 
-Submit the form to get predicted math scores.
+```text
+model.pkl
+preprocessor.pkl
+```
 
+---
 
+## ✅ Key Highlights
 
-📌 Usage Example
+```text
+- End-to-end ML project
+- Modular architecture
+- Flask web application
+- Azure cloud deployment
+- Production-ready setup
+```
 
+---
 
+## 📌 Use Cases
 
-Enter values like:
+```text
+- Student performance analysis
+- Education analytics
+- ML portfolio project
+- Interview demonstration
+```
 
+---
 
+## 👨‍💻 Author
 
-Gender: Female
+```text
+Jathin Reddy
+GitHub: https://github.com/jathinreddy3515
+```
 
 
 
-Race/Ethnicity: group B
-
-
-
-Lunch Type: Standard
-
-
-
-Reading Score: 70
-
-
-
-Writing Score: 75
-
-
-
-Click Predict, and the predicted math score will appear.
-
-
-
-🗃️ Notes
-
-
-
-Ensure preprocessor.pkl and model.pkl exist in artifacts/ after training.
-
-
-
-Run data transformation and model training first if missing.
-
-
-
-
-
-❓ Questions
-
-
-
-Verify Python version (3.8+ recommended)
-
-
-
-Ensure virtual environment is active
-
-
-
-Dependencies installed correctly
-
-
-
-📝 Summary
-
-
-
-This project demonstrates complete flow from raw data to a usable ML-powered web app. It is a solid learning base for ML projects and can be extended with more models or deployment features.
 
