@@ -168,7 +168,6 @@ preprocessor.pkl
 
 ## 📌 Use Cases
 
-```text
 - Student performance analysis
 - Education analytics
 - ML portfolio project
